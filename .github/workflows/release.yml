@@ -7,7 +7,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v6
     
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1
@@ -30,7 +30,7 @@ jobs:
         mv TeamCord.msi TeamCord-win-x64-${{github.ref_name}}.msi
 
     - name: Upload setup artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v5
       with:
         name: TeamCord-win-x64-${{github.ref_name}}.msi
         path: "src\\TeamCord.Setup\\bin\\x64\\Release\\TeamCord-win-x64-${{github.ref_name}}.msi"
@@ -43,12 +43,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - uses: actions/download-artifact@v3
+    - uses: actions/download-artifact@v1.0.4
       with:
         name: TeamCord-win-x64-${{github.ref_name}}.msi
 
     - name: Release files
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2.5.0
       with:
         body_path: ${{ github.workspace }}-CHANGELOG.md
         fail_on_unmatched_files: true
