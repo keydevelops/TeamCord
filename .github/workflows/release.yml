@@ -1,9 +1,6 @@
 name: Release_package
 
-on:
-  push:
-    tags:
-      - "*.*.*"
+on: [push]
 
 jobs:
   build:
